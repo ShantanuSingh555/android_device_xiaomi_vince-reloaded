@@ -22,23 +22,19 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/xiaomi/vince/device.mk)
 
 #all
-IS_GO_VERSION := true
 TARGET_INCLUDE_STOCK_ARCORE := true
 $(call inherit-product, vendor/MiuiCamera/config.mk)
 
-# On for(PE)
-$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+#(PE-CAF)
+$(call inherit-product, vendor/aosp/config/common.mk)
+
+# Inherit from our common CAF device tree.
+include device/qcom/common/common.mk
+
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_GAPPS_ARCH := arm64
 TARGET_MINIMAL_APPS := false
 CUSTOM_BUILD_TYPE := OFFICIAL
-
-# On for(AEX)
-#$(call inherit-product, vendor/aosp/common.mk)
-#TARGET_BOOT_ANIMATION_RES := 2140
-#EXTENDED_BUILD_TYPE := OFFICIAL
-
-# Inherit from custom vendor
 
 #Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := vince
